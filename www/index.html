@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport"
+        content="width=device-width, height=device-height, user-scalable=no, initial-scale=1, viewport-fit=cover">
+    <link rel="stylesheet" href="onsenui/css/onsenui.css">
+    <link rel="stylesheet" href="onsenui/css/onsen-css-components.css">
+    <link rel="stylesheet" type='text/css' href="styles/index.css">
+    <script src="cordova.js"></script>
+    <script src="onsenui/js/onsenui.js"></script>
+    <script src='scripts/index.js'></script>
+</head>
+
+<body id="bodyID">
+    <ons-navigator id="myNavigator" page="homePage.html" animation="none">
+        <ons-page>
+            <ons-tabbar position="bottom" id="navTab" animation="none">
+                <ons-tab page="homePage.html" icon="search" label="Search" class="blueIcon"></ons-tab>
+                <ons-tab page="regionChoice.html" icon="globe" label="Region" class="blueIcon" active></ons-tab>
+                <ons-tab page="recycleInfo.html" icon="sync-alt" label="Info" class="blueIcon"></ons-tab>
+            </ons-tabbar>
+        </ons-page>
+    </ons-navigator>
+
+    <ons-template id="homePage.html">
+        <ons-page id="homePage.html">
+            <ons-toolbar class='navContainer'>
+                <div class='left smallLeft'>
+                </div>
+                <div class="center toolbarCenter">
+                    <img class="toolbarImg" src="img/shop.png">
+                    <div class="searchContainer">
+                        <ons-icon icon="search" id="searchButton" class="list-item__icon ons-icon" modifier="material">
+                        </ons-icon>
+                        <input type="text" class="searchBars" id="searchBar" placeholder="Search All Items...">
+                    </div>
+                </div>
+                <div class="right smallRight"></div>
+            </ons-toolbar>
+            <div id="scrollToHome"></div>
+            <ons-list class="dropdownLists whiteTop" id='dropdownList'>
+            </ons-list>
+            <ons-scroller id="homeScroller" onclick="blurInput('searchBar')">
+                <div class="tapToScan">
+                    <h2 class="bold">Tap to Scan Item</h2>
+                </div>
+                <div onclick="barcodeScan()" class="buttDiv">
+                    <div>
+                        <ons-icon icon="qrcode" class="buttIcon">
+                    </div>
+                    <div>
+                        <img id="barcodeButt" src="img/plastic-final.png" class="koru throb" alt="...">
+                    </div>
+                    <div>
+                        <ons-icon icon="barcode" class="buttIcon"></ons-icon>
+                    </div>
+                </div>
+
+                <div class="carouselTitle">
+                    <h5>Featured Products</h5>
+                </div>
+                <div id="carouselDiv">
+                    <div>
+                        <ons-progress-bar id='progressBar' indeterminate></ons-progress-bar>
+                        <ons-carousel id='caroBody' auto-refresh swipeable item-width="170px"
+                            style='background-color: white;'>
+                        </ons-carousel>
+                    </div>
+                </div>
+            </ons-scroller>
+        </ons-page>
+    </ons-template>
+
+    <ons-template id="regionChoice.html">
+        <ons-page id="regionChoice.html" class="toolbar-fixed">
+            <ons-toolbar class='navContainer white'>
+                <div class='left smallLeft'></div>
+                <div class="center toolbarCenter">
+                    <h2 id="selectHeader" style="text-align: center; color: white;">Please Select Region</h2>
+                    <img id="img2" class="toolbarImg dispNone" src="img/shop.png">
+                    <div id="searchCon2">
+                        <ons-icon icon="search" id="searchButton2" class="list-item__icon ons-icon dispNone"
+                            modifier="material">
+                        </ons-icon>
+                        <input type="text" class="searchBars dispNone" id="searchBar2" placeholder="Search All Items...">
+                    </div>
+                </div>
+                <div class="right smallRight"></div>
+            </ons-toolbar>
+            <div id="scrollToRegion"></div>
+            <ons-list class="dropdownLists whiteTop" id='dropdownList2'>
+            </ons-list>
+            <ons-scroller id="regionScroller" onclick="blurInput('searchBar2')">
+                <div id='regionScroll'>
+                </div>
+            </ons-scroller>
+        </ons-page>
+    </ons-template>
+
+    <ons-template id="resultsPage.html">
+        <ons-page id="resultsPage.html">
+            <ons-toolbar static class="leftBack leftBackIOS">
+                <div class="left chevyLeft">
+                    <div class="backIconDiv" onclick='fn.pop("res")'>
+                        <ons-icon icon="chevron-left" class="backIcon"></ons-icon>
+                    </div>
+                </div>
+                <div class="center toolbarCenter">
+                </div>
+            </ons-toolbar>
+            <div>
+                <ons-scroller>
+                    <div id='narrow'>
+                    </div>
+                    <ons-list>
+                        <ons-lazy-repeat id="infinite-list"></ons-lazy-repeat>
+                    </ons-list>
+                </ons-scroller>
+            </div>
+        </ons-page>
+    </ons-template>
+
+    <ons-template id="recycleInfo.html">
+        <ons-page id="recycleInfo.html" class="toolbar-fixed">
+            <ons-toolbar class='navContainer white'>
+                <div class='left smallLeft'>
+                </div>
+                <div class="center toolbarCenter">
+                    <img class="toolbarImg" src="img/shop.png">
+                    <div class="searchContainer">
+                        <ons-icon icon="search" id="searchButton3" class="list-item__icon ons-icon" modifier="material">
+                        </ons-icon>
+                        <input type="text" class="searchBars" id="searchBar3" placeholder="Search All Items...">
+                    </div>
+                </div>
+                <div class="right smallRight"></div>
+            </ons-toolbar>
+            <div id="scrollToInfo"></div>
+            <ons-list class="dropdownLists whiteTop" id='dropdownList3'>
+            </ons-list>
+            <ons-scroller id="infoScroller" onclick="blurInput('searchBar3')">
+                <div class="infoTitle" id="ecoInfoTitle">
+                    <h2 class="bold">Eco Info</h2>
+                </div>
+                <div id="ecoInfoDiv">
+                    <div class="infoGrid" style="background-color: rgb(12, 73, 77);"
+                        onclick="fn.load('infoPage.html', {image: 'img/plastics.png', title: 'Plastic', info: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.'})">
+<!-- taken from 
+https://theoceancleanup.com/great-pacific-garbage-patch/ 
+https://www.unenvironment.org/news-and-stories/story/plastic-planet-how-tiny-plastic-particles-are-polluting-our-soil 
+-->
+                        <div class="infoGrid1of2">
+                            <div class="infoGridTitle">Plastic<br>
+                                <ons-icon icon="recycle"></ons-icon>
+                            </div>
+                        </div>
+                        <div class="infoGrid2of2">
+                            <div>
+                                <img src="img/turtle.png" class="infoGridImg turtleCompost" alt="...">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="infoGrid" style="background-color: rgb(18, 54, 48);"
+                        onclick="fn.load('infoPage.html', {image: 'img/forest.png', title: 'Paper', info: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.'})">
+                        <div class="infoGrid1of2">
+                            <div class="infoGridTitle">Paper<br>
+                                <ons-icon icon="paper-plane"></ons-icon>
+                            </div>
+                        </div>
+                        <div class="infoGrid2of2">
+                            <div>
+                                <img src="img/tree.png" class="infoGridImg tree" alt="...">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="infoGrid" style="background-color: rgb(6, 65, 10);"
+                        onclick="fn.load('infoPage.html', {image: 'img/mining.png', title: 'Glass & Metal', info: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.'})">
+                        <div class="infoGrid1of2">
+                            <div class="infoGridTitle">Glass & Metal<br>
+                                <ons-icon icon="atom"></ons-icon>
+                            </div>
+                        </div>
+                        <div class="infoGrid2of2">
+                            <div>
+                                <img src="img/factory.png" class="infoGridImg factory" alt="...">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="infoGrid" style="background-color: rgb(45, 97, 27);"
+                        onclick="fn.load('infoPage.html', {image: 'img/composting.png', title: 'Compost', info: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.'})">
+
+<!-- 
+    TAKEN FROM 
+    https://www.environment.gov.au/climate-change/climate-science-data/climate-science/greenhouse-effect 
+    https://www.eia.gov/energyexplained/biomass/landfill-gas-and-biogas.php
+    https://www.agric.wa.gov.au/climate-change/composting-avoid-methane-production
+    https://www.epa.gov/recycle/composting-home
+
+-->
+                        <div class="infoGrid1of2"><div class="infoGridTitle">Compost<br><ons-icon icon="leaf"></ons-icon></div></div>
+                        <div class="infoGrid2of2">
+                            <div>
+                                <img src="img/compost.png" class="infoGridImg turtleCompost" alt="...">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ons-scroller>
+        </div>
+        </ons-page>
+    </ons-template>
+
+    <ons-template id="productPage.html">
+        <ons-page id="productPage.html">
+            <ons-toolbar static class="leftBack leftBackIOS">
+                <div class="left chevyLeft">
+                    <div class="backIconDiv" onclick='fn.pop("prod")'>
+                        <ons-icon icon="chevron-left" class="backIcon"></ons-icon>
+                    </div>
+                </div>
+                <div class="center toolbarCenter">
+                </div>
+            </ons-toolbar>
+            <ons-scroller id='productPageContent'>
+            </ons-scroller>
+        </ons-page>
+    </ons-template>
+
+    <ons-template id="infoPage.html">
+        <ons-page id="infoPage.html">
+            <ons-toolbar static class="leftBack leftBackIOS">
+                <div class="left chevyLeft">
+                    <div class="backIconDiv" onclick='fn.pop()'>
+                        <ons-icon icon="chevron-left" class="backIcon"></ons-icon>
+                    </div>
+                </div>
+                <div class="center toolbarCenter">
+                </div>
+            </ons-toolbar>
+            <div class="infoPageWrapper">
+            <ons-card class='card marginTopIOS infoPageCard'>
+                <div class="title cntr" id="infoPageTitle">
+                </div>
+                <div class="content" id="infoPageText">
+                </div>
+            </ons-card>
+        </div>
+        </ons-page>
+    </ons-template>
+
+    <ons-modal direction="up" id="loadModal">
+        <div style="text-align: center">
+            <p>
+                <ons-icon icon="spinner" size="28px" spin></ons-icon>
+            </p>
+        </div>
+    </ons-modal>
+
+</body>
+
+</html>

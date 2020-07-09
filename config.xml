@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.shop.app" version="1.0.0" 
+    xmlns="http://www.w3.org/ns/widgets" 
+    xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Shop</name>
+    <description>
+            A sample shopping app where you can select your region.
+    </description>
+    <author email="" href="">
+            Team
+    </author>
+    <content src="index.html" />
+    <feature name="CDVWKWebViewEngine">
+        <param name="ios-package" value="CDVWKWebViewEngine" />
+    </feature>
+    <preference name="Orientation" value="portrait" />
+    <preference name="SplashScreenDelay" />
+    <preference name="ShowSplashScreenSpinner" value="true" />
+    <preference name="TopActivityIndicator" value="whiteLarge" />
+    <preference name="SplashScreenSpinnerColor" value="white" />
+    <preference name="AutoHideSplashScreen" value="false" />
+    <preference name="CordovaWebViewEngine" value="CDVWKWebViewEngine" />
+    <preference name="AllowBackForwardNavigationGestures" value="true" />
+    <preference name="Allow3DTouchLinkPreview" value="false" />
+    <preference name="StatusBarOverlaysWebView" value="true" />
+    <preference name="StatusBarBackgroundColor" value="#" />
+    <preference name="BackupWebStorage" value="none" />
+    <preference name="WKWebViewOnly" value="true" />
+    <access origin="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    <platform name="android">
+        <allow-intent href="market:*" />
+        <splash src="resources/screen/splash.png" />
+    </platform>
+    <platform name="ios">
+        <preference name="KeyboardResize" value="false" />
+        <allow-intent href="itms:*" />
+        <allow-intent href="itms-apps:*" />
+        <edit-config file="*-Info.plist" mode="merge" target="NSCameraUsageDescription">
+            <string>To scan codes</string>
+        </edit-config>
+        <splash src="resources/screen/ios/Default@2x~universal~anyany.png" />
+    </platform>
+    <plugin name="cordova-plugin-whitelist" spec="1" />
+    <plugin name="phonegap-plugin-barcodescanner" spec="~8.1.0" />
+    <plugin name="cordova-plugin-splashscreen" spec="~5.0.3" />
+    <plugin name="cordova-plugin-wkwebview-engine" spec="~1.2.1" />
+    <plugin name="cordova-plugin-statusbar" spec="~2.4.3" />
+    <plugin name="cordova-plugin-inappbrowser-wkwebview" spec="~1.0.7" />
+    <plugin name="cordova-plugin-ionic-keyboard" spec="~2.2.0" />
+</widget>

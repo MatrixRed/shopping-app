@@ -1,0 +1,19 @@
+# -------
+# Cordova
+# -------
+node_modules/*
+plugins/*
+platforms/*
+
+# -------
+# VS Code
+# -------
+typings/*
+.vscode
+jsconfig.json
+
+# -------
+# Mac metadata
+# -------
+resources/screen/ios/.DS_Store
+resources/screen/.DS_Store
