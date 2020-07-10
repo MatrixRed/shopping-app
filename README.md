@@ -47,7 +47,7 @@ In `mainScript.js`, set the global variable `debugMode` to true.
 
 > `cordova build`
 
-### Build only
+### Build specific platform
 
 | `cordova build <platform>` | `[optional-args]` |               |
 | -------------------------- | ----------------- | ------------- |
