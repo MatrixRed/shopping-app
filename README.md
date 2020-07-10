@@ -38,7 +38,7 @@ In `mainScript.js`, set the global variable `debugMode` to true.
  > `cordova build`  
 
 ### Build only android  
-* | `cordova build android` | `[optional-args]` | |
+  | `cordova build android` | `[optional-args]` | |
   | ----- | ----- | ----- |
   | | `--release` | release build |
   | | `--debug` | debug build |
@@ -47,7 +47,7 @@ In `mainScript.js`, set the global variable `debugMode` to true.
 *  Emulator
  > `cordova emulate android`
 *  On phone:
- >| `cordova run android` | `[optional-args]` | |
+  | `cordova run android` | `[optional-args]` | |
   | ----- | ----- | ----- |
   | | `--debug` | deploy debug build |
   | | `--release` | deploy release build |
