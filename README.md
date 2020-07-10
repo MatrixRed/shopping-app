@@ -11,12 +11,12 @@ This app requires access to a product database via API call to function.
 ## Quick start
 1. After installing cordova go into project folder:
   > `cd ./product-search`
-2. Install plugins etc from config.xml list:
+2. Add platforms (ios and android):
+  > `cordova platform add <platform>`
+3. Install plugins etc from config.xml list:
   > `cordova prepare`
-3. Build:
-  > `cordova build android`
-4. Emulate:
-  > `cordova emulate android`
+4. Run app on emulator or device:
+  > `cordova run <platform>`
 
 ## Debugging
 In `mainScript.js`, set the global variable `debugMode` to true.  
@@ -26,7 +26,7 @@ In `mainScript.js`, set the global variable `debugMode` to true.
  > `cordova create sampleapp io.onsen.sampleapp "Onsen UI Sample App"`
 
 ### Add platforms to the project
- > `cordova platform add android`  
+ > `cordova platform add <platform>`  
 
 ### Check current set of platforms
  > `cordova platform ls`  
@@ -37,19 +37,12 @@ In `mainScript.js`, set the global variable `debugMode` to true.
 ### Build all platforms
  > `cordova build`  
 
-### Build only android  
-  | `cordova build android` | `[optional-args]` | |
+### Build only   
+  | `cordova build <platform>` | `[optional-args]` | |
   | ----- | ----- | ----- |
   | | `--release` | release build |
   | | `--debug` | debug build |
 
 ### Test the app
 *  Emulator
- > `cordova emulate android`
-*  On phone:
-  | `cordova run android` | `[optional-args]` | |
-  | ----- | ----- | ----- |
-  | | `--debug` | deploy debug build |
-  | | `--release` | deploy release build |
-  | | `--device` | force run on device |
-  | | `--list`   | list all available devices |
+ > `cordova emulate <platform>`
